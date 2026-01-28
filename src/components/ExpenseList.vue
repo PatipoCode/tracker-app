@@ -2,6 +2,8 @@
 import ExpenseItem from './ExpenseItem.vue'
 import EmptyState from './EmptyState.vue'
 
+const emptyStateImage = `${import.meta.env.BASE_URL}images/empty-state.png`
+
 defineProps({
   items: {
     type: Array,
@@ -22,7 +24,7 @@ const handleDelete = (id) => {
     <EmptyState
       v-if="items.length === 0"
       class="expense-list__empty"
-      :image-src="`${import.meta.env.BASE_URL}images/empty-state.png`"
+      :image-src="emptyStateImage"
       title="Витрат не знайдено"
       description="Додайте свою першу витрату, щоб почати відстежувати фінанси"
     />
