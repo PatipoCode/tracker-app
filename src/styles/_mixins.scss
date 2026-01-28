@@ -1,0 +1,120 @@
+@use 'variables' as *;
+
+@mixin custom-select-base {
+  position: relative;
+  width: 100%;
+}
+
+@mixin custom-select-trigger {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-text-muted);
+  border-radius: $border-radius;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition:
+    border-color $transition,
+    box-shadow $transition;
+
+  &:hover {
+    border-color: var(--color-text-secondary);
+  }
+}
+
+@mixin custom-select-trigger-open {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-color: $color-primary;
+  box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+}
+
+@mixin custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-primary);
+  border: 1px solid $color-primary;
+  border-radius: $border-radius;
+  box-shadow: $shadow-hover;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+}
+
+@mixin custom-select-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  transition: all 0.15s ease;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: all 0.15s ease;
+  }
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba($color-primary, 0.3) 0%,
+      rgba($color-accent, 0.2) 100%
+    ) !important;
+
+    &::before {
+      background: $color-accent;
+    }
+  }
+
+  &:first-child {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  &:only-child {
+    border-radius: $border-radius;
+  }
+}
+
+@mixin custom-select-option-selected {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  color: #ffffff;
+  font-weight: 600;
+
+  &::before {
+    background: $color-accent;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, $color-primary-light 0%, $color-primary 100%) !important;
+  }
+}
+
+@mixin slideDown-animation {
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

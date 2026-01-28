@@ -1,0 +1,112 @@
+@use 'bootstrap/scss/bootstrap';
+
+:root {
+  --color-text-primary: #{$color-text-primary-light};
+  --color-text-secondary: #{$color-text-secondary-light};
+  --color-text-muted: #{$color-text-muted-light};
+  --color-bg-primary: #{$color-bg-primary-light};
+  --color-bg-secondary: #{$color-bg-secondary-light};
+}
+
+[data-theme='dark'] {
+  --color-text-primary: #{$color-text-primary-dark};
+  --color-text-secondary: #{$color-text-secondary-dark};
+  --color-text-muted: #{$color-text-muted-dark};
+  --color-bg-primary: #{$color-bg-primary-dark};
+  --color-bg-secondary: #{$color-bg-secondary-dark};
+}
+
+body {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition:
+    background-color $transition,
+    color $transition;
+}
+
+.btn {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.3) !important;
+  }
+}
+
+.card {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border: 2px solid rgba($color-primary, 0.2);
+  transition:
+    background-color $transition,
+    color $transition,
+    border-color $transition,
+    transform $transition;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.4);
+  }
+}
+
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+
+.alert {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-color: var(--color-text-muted);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-color: var(--color-text-muted);
+  transition:
+    border-color $transition,
+    box-shadow $transition;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-text-secondary);
+  }
+
+  &:focus {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+
+  &:disabled {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    opacity: $opacity-disabled;
+    cursor: not-allowed;
+  }
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.form-control.is-invalid,
+.custom-select.is-invalid .custom-select__trigger {
+  border-color: $color-danger !important;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-danger, 0.1) !important;
+  }
+}
