@@ -1,8 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/stores/theme'
-import IconMoon from '../../public/icons/IconMoon.vue'
-import IconSun from '../../public/icons/IconSun.vue'
+import IconMoon from '@/components/icons/IconMoon.vue'
+import IconSun from '@/components/icons/IconSun.vue'
 
 const themeStore = useThemeStore()
 const { theme } = storeToRefs(themeStore)

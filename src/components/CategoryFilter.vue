@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import IconArrowDown from '../../public/icons/IconArrowDown.vue'
+import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 
 const props = defineProps({
   categories: {

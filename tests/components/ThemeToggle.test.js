@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import ThemeToggle from '@/components/ThemeToggle.vue'
-import IconMoon from '@/components/../../public/icons/IconMoon.vue'
-import IconSun from '@/components/../../public/icons/IconSun.vue'
+import IconMoon from '@/components/icons/IconMoon.vue'
+import IconSun from '@/components/icons/IconSun.vue'
 
 describe('ThemeToggle', () => {
   let pinia

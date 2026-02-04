@@ -2,7 +2,7 @@
 import { computed, ref, useAttrs } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { EXPENSE_CATEGORIES } from '@/constants'
-import IconArrowDown from '../../public/icons/IconArrowDown.vue'
+import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 
 defineOptions({
   inheritAttrs: false,
