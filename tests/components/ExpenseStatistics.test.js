@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ExpenceStatistics from '@/components/ExpenceStatistics.vue'
+import ExpenseStatistics from '@/components/ExpenseStatistics.vue'
 
-describe('ExpenceStatistics', () => {
+describe('ExpenseStatistics', () => {
   const testCategoryStats = {
     'food (їжа)': 500,
     'transport (транспорт)': 150,
@@ -18,7 +18,7 @@ describe('ExpenceStatistics', () => {
 
   let wrapper
 
-  const mountStatistics = (props) => mount(ExpenceStatistics, { props })
+  const mountStatistics = (props) => mount(ExpenseStatistics, { props })
   const getTitleElement = (wrapper) => wrapper.find('.statistics__title')
   const getTotalElement = (wrapper) => wrapper.find('.statistics__total')
   const getCategoriesElement = (wrapper) => wrapper.find('.statistics__categories')

@@ -3,19 +3,19 @@ import { STORAGE_KEY } from '@/constants'
 
 export const useExpensesStore = defineStore('expenses', {
   state: () => ({
-    expences: [],
+    expenses: [],
     isInitialized: false,
   }),
 
   getters: {
     totalExpenses: (state) => {
-      return state.expences.reduce((sum, expense) => sum + expense.amount, 0)
+      return state.expenses.reduce((sum, expense) => sum + expense.amount, 0)
     },
 
     statsByCategories: (state) => {
       const stats = {}
 
-      state.expences.forEach((expense) => {
+      state.expenses.forEach((expense) => {
         if (!stats[expense.category]) {
           stats[expense.category] = 0
         }
@@ -26,7 +26,7 @@ export const useExpensesStore = defineStore('expenses', {
     },
 
     availableCategories: (state) => {
-      return [...new Set(state.expences.map((expense) => expense.category))]
+      return [...new Set(state.expenses.map((expense) => expense.category))]
     },
   },
 
@@ -37,14 +37,14 @@ export const useExpensesStore = defineStore('expenses', {
       if (saved) {
         try {
           const parsed = JSON.parse(saved)
-          this.expences = parsed.map((expense) => ({
+          this.expenses = parsed.map((expense) => ({
             ...expense,
             date: new Date(expense.date),
           }))
         } catch (error) {
           console.error('Failed to load expenses from localStorage:', error)
           localStorage.removeItem(STORAGE_KEY)
-          this.expences = []
+          this.expenses = []
         }
       }
 
@@ -53,12 +53,12 @@ export const useExpensesStore = defineStore('expenses', {
 
     saveToStorage() {
       if (this.isInitialized) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.expences))
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.expenses))
       }
     },
 
     addExpense(expense) {
-      this.expences.push({
+      this.expenses.push({
         ...expense,
         id: Date.now(),
       })
@@ -66,7 +66,7 @@ export const useExpensesStore = defineStore('expenses', {
     },
 
     deleteExpense(id) {
-      this.expences = this.expences.filter((expense) => expense.id !== id)
+      this.expenses = this.expenses.filter((expense) => expense.id !== id)
       this.saveToStorage()
     },
   },

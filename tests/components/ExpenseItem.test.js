@@ -14,9 +14,9 @@ describe('ExpenseItem', () => {
 
   let wrapper
 
-  const mountExpenseItem = (expence) =>
+  const mountExpenseItem = (expense) =>
     mount(ExpenseItem, {
-      props: { expence },
+      props: { expense },
     })
   const getTitleElement = (wrapper) => wrapper.find('.expense-item__title')
   const getAmountElement = (wrapper) => wrapper.find('.expense-item__amount')

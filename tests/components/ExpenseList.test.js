@@ -59,9 +59,9 @@ describe('ExpenseList', () => {
   it('passes correct data to each ExpenseItem', () => {
     const expenseItems = getExpenseItems(wrapper)
 
-    expect(expenseItems[0].props('expence')).toEqual(testExpenses[0])
-    expect(expenseItems[1].props('expence')).toEqual(testExpenses[1])
-    expect(expenseItems[2].props('expence')).toEqual(testExpenses[2])
+    expect(expenseItems[0].props('expense')).toEqual(testExpenses[0])
+    expect(expenseItems[1].props('expense')).toEqual(testExpenses[1])
+    expect(expenseItems[2].props('expense')).toEqual(testExpenses[2])
   })
 
   it('emits delete-expense when ExpenseItem emits delete-expense', async () => {

@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import AddExpense from '@/components/AddExpense.vue'
 import ExpenseList from '@/components/ExpenseList.vue'
-import ExpenceStatistics from './ExpenceStatistics.vue'
+import ExpenseStatistics from './ExpenseStatistics.vue'
 import CategoryFilter from './CategoryFilter.vue'
 import BaseContainer from './BaseContainer.vue'
 import ThemeToggle from './ThemeToggle.vue'
@@ -16,15 +16,15 @@ themeStore.initialize()
 
 const selectedCategory = ref('all')
 
-const getExpence = (value) => {
+const getExpense = (value) => {
   expensesStore.addExpense(value)
 }
 
-const deleteExpence = (id) => {
+const deleteExpense = (id) => {
   expensesStore.deleteExpense(id)
 
   if (selectedCategory.value !== 'all') {
-    const categoryExists = expensesStore.expences.some(
+    const categoryExists = expensesStore.expenses.some(
       (expense) => expense.category === selectedCategory.value
     )
     if (!categoryExists) {
@@ -35,9 +35,9 @@ const deleteExpence = (id) => {
 
 const filteredExpenses = computed(() => {
   if (selectedCategory.value === 'all') {
-    return expensesStore.expences
+    return expensesStore.expenses
   }
-  return expensesStore.expences.filter(
+  return expensesStore.expenses.filter(
     (expense) => expense.category === selectedCategory.value
   )
 })
@@ -59,10 +59,10 @@ onMounted(() => {
       </div>
 
       <div class="expense-tracker__form">
-        <AddExpense @add-expence="getExpence" />
+        <AddExpense @add-expense="getExpense" />
       </div>
 
-      <div v-if="expensesStore.expences.length > 0" class="expense-tracker__filter">
+      <div v-if="expensesStore.expenses.length > 0" class="expense-tracker__filter">
         <CategoryFilter
           v-model="selectedCategory"
           :categories="expensesStore.availableCategories"
@@ -70,11 +70,11 @@ onMounted(() => {
       </div>
 
       <div class="expense-tracker__list">
-        <ExpenseList :items="filteredExpenses" @delete-expense="deleteExpence" />
+        <ExpenseList :items="filteredExpenses" @delete-expense="deleteExpense" />
       </div>
 
-      <div v-if="expensesStore.expences.length > 0" class="expense-tracker__statistics">
-        <ExpenceStatistics
+      <div v-if="expensesStore.expenses.length > 0" class="expense-tracker__statistics">
+        <ExpenseStatistics
           :total="expensesStore.totalExpenses"
           :categoryStats="expensesStore.statsByCategories"
         />

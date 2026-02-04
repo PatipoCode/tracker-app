@@ -5,9 +5,9 @@ import BaseInput from './BaseInput.vue'
 import BaseSelect from './BaseSelect.vue'
 import { MIN_DESCRIPTION_LENGTH, MAX_AMOUNT, MAX_DECIMAL_PLACES } from '@/constants'
 
-const emit = defineEmits(['add-expence'])
+const emit = defineEmits(['add-expense'])
 
-const expence = reactive({
+const expense = reactive({
   description: '',
   amount: '',
   category: '',
@@ -26,7 +26,7 @@ const errors = reactive({
 })
 
 const validateDescription = () => {
-  const trimmed = expence.description.trim()
+  const trimmed = expense.description.trim()
 
   if (!trimmed) {
     errors.description = "Опис обов'язковий"
@@ -43,12 +43,12 @@ const validateDescription = () => {
 }
 
 const validateAmount = () => {
-  if (!expence.amount) {
+  if (!expense.amount) {
     errors.amount = "Сума обов'язкова"
     return false
   }
 
-  const amount = parseFloat(expence.amount)
+  const amount = parseFloat(expense.amount)
 
   if (isNaN(amount)) {
     errors.amount = 'Введіть коректне число'
@@ -65,7 +65,7 @@ const validateAmount = () => {
     return false
   }
 
-  const parts = expence.amount.toString().split('.')
+  const parts = expense.amount.toString().split('.')
   const hasDecimal = parts.length === 2
   const decimalTooLong = hasDecimal && parts[1].length > MAX_DECIMAL_PLACES
 
@@ -79,7 +79,7 @@ const validateAmount = () => {
 }
 
 const validateCategory = () => {
-  if (!expence.category) {
+  if (!expense.category) {
     errors.category = "Оберіть категорію"
     return false
   }
@@ -107,9 +107,9 @@ const isFormValid = computed(() => {
 })
 
 const clearForm = () => {
-  expence.description = ''
-  expence.category = ''
-  expence.amount = ''
+  expense.description = ''
+  expense.category = ''
+  expense.amount = ''
 
   touched.description = false
   touched.amount = false
@@ -130,10 +130,10 @@ const handleSubmit = () => {
   validateCategory()
 
   if (isFormValid.value) {
-    emit('add-expence', {
-      description: expence.description.trim(),
-      amount: parseFloat(expence.amount),
-      category: expence.category,
+    emit('add-expense', {
+      description: expense.description.trim(),
+      amount: parseFloat(expense.amount),
+      category: expense.category,
       date: new Date(),
     })
     clearForm()
@@ -150,7 +150,7 @@ const handleSubmit = () => {
           <label for="expense-description" class="add-expense__label form-label">Опис витрати</label>
           <BaseInput
             id="expense-description"
-            v-model="expence.description"
+            v-model="expense.description"
             :type="'text'"
             :placeholder="'Наприклад: Продукти в супермаркеті'"
             :class="{ 'is-invalid': touched.description && errors.description }"
@@ -165,7 +165,7 @@ const handleSubmit = () => {
           <label for="expense-amount" class="add-expense__label form-label">Сума</label>
           <BaseInput
             id="expense-amount"
-            v-model="expence.amount"
+            v-model="expense.amount"
             :type="'number'"
             :placeholder="'0.00'"
             :step="'0.01'"
@@ -181,7 +181,7 @@ const handleSubmit = () => {
           <label for="expense-category" class="add-expense__label form-label">Категорія</label>
           <BaseSelect
             id="expense-category"
-            v-model="expence.category"
+            v-model="expense.category"
             :class="{ 'is-invalid': touched.category && errors.category }"
             @change="onCategoryChange"
           />

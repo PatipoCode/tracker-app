@@ -7,7 +7,7 @@ import ExpenseList from '@/components/ExpenseList.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import BaseContainer from '@/components/BaseContainer.vue'
 import CategoryFilter from '@/components/CategoryFilter.vue'
-import ExpenceStatistics from '@/components/ExpenceStatistics.vue'
+import ExpenseStatistics from '@/components/ExpenseStatistics.vue'
 import { useExpensesStore } from '@/stores/expenses'
 
 describe('ExpenseTrackerApp', () => {
@@ -28,11 +28,11 @@ describe('ExpenseTrackerApp', () => {
   const getThemeToggle = (wrapper) => wrapper.findComponent(ThemeToggle)
   const getBaseContainer = (wrapper) => wrapper.findComponent(BaseContainer)
   const getCategoryFilter = (wrapper) => wrapper.findComponent(CategoryFilter)
-  const getStatistics = (wrapper) => wrapper.findComponent(ExpenceStatistics)
+  const getStatistics = (wrapper) => wrapper.findComponent(ExpenseStatistics)
 
   const addExpenseToApp = async (wrapper, expense) => {
     const addExpense = getAddExpense(wrapper)
-    await addExpense.vm.$emit('add-expence', expense)
+    await addExpense.vm.$emit('add-expense', expense)
     await wrapper.vm.$nextTick()
   }
 
@@ -124,12 +124,12 @@ describe('ExpenseTrackerApp', () => {
 
   it('adds expense through store', async () => {
     const expensesStore = useExpensesStore(pinia)
-    const initialCount = expensesStore.expences.length
+    const initialCount = expensesStore.expenses.length
 
     await addExpenseToApp(wrapper, createExpense({ description: 'Новий тест' }))
 
-    expect(expensesStore.expences.length).toBe(initialCount + 1)
-    expect(expensesStore.expences[expensesStore.expences.length - 1].description).toBe('Новий тест')
+    expect(expensesStore.expenses.length).toBe(initialCount + 1)
+    expect(expensesStore.expenses[expensesStore.expenses.length - 1].description).toBe('Новий тест')
   })
 
   it('deletes expense from store', async () => {
@@ -143,7 +143,7 @@ describe('ExpenseTrackerApp', () => {
     await expenseList.vm.$emit('delete-expense', itemId)
     await wrapper.vm.$nextTick()
 
-    expect(expensesStore.expences.find((e) => e.id === itemId)).toBeUndefined()
+    expect(expensesStore.expenses.find((e) => e.id === itemId)).toBeUndefined()
   })
 
   it('filters expenses by category', async () => {

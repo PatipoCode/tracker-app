@@ -25,7 +25,7 @@ describe('useExpensesStore', () => {
   it('has empty expenses array on initialization', () => {
     const store = useExpensesStore()
 
-    expect(store.expences).toEqual([])
+    expect(store.expenses).toEqual([])
     expect(store.isInitialized).toBe(false)
   })
 
@@ -34,10 +34,10 @@ describe('useExpensesStore', () => {
 
     store.addExpense(createExpense('Тестова витрата', 100, 'food (їжа)'))
 
-    expect(store.expences).toHaveLength(1)
-    expect(store.expences[0].description).toBe('Тестова витрата')
-    expect(store.expences[0].amount).toBe(100)
-    expect(store.expences[0].id).toBeDefined()
+    expect(store.expenses).toHaveLength(1)
+    expect(store.expenses[0].description).toBe('Тестова витрата')
+    expect(store.expenses[0].amount).toBe(100)
+    expect(store.expenses[0].id).toBeDefined()
   })
 
   it('deletes expense by id', () => {
@@ -45,12 +45,12 @@ describe('useExpensesStore', () => {
 
     store.addExpense(createExpense('Тестова витрата', 100, 'food (їжа)'))
 
-    expect(store.expences).toHaveLength(1)
+    expect(store.expenses).toHaveLength(1)
 
-    const expenseId = store.expences[0].id
+    const expenseId = store.expenses[0].id
     store.deleteExpense(expenseId)
 
-    expect(store.expences).toHaveLength(0)
+    expect(store.expenses).toHaveLength(0)
   })
 
   it('correctly calculates total expenses amount', () => {
@@ -114,10 +114,10 @@ describe('useExpensesStore', () => {
     const store = useExpensesStore()
     store.loadFromStorage()
 
-    expect(store.expences).toHaveLength(1)
-    expect(store.expences[0].description).toBe('Збережена витрата')
-    expect(store.expences[0].amount).toBe(200)
-    expect(store.expences[0].date).toBeInstanceOf(Date)
+    expect(store.expenses).toHaveLength(1)
+    expect(store.expenses[0].description).toBe('Збережена витрата')
+    expect(store.expenses[0].amount).toBe(200)
+    expect(store.expenses[0].date).toBeInstanceOf(Date)
     expect(store.isInitialized).toBe(true)
   })
 })

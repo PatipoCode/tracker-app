@@ -32,7 +32,7 @@ const handleDelete = (id) => {
       v-else
       v-for="item in items"
       :key="item.id"
-      :expence="item"
+      :expense="item"
       @delete-expense="handleDelete"
     />
   </div>

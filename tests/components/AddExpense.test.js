@@ -144,7 +144,7 @@ describe('AddExpense', () => {
     expect(error).toBeTruthy()
   })
 
-  it('emits add-expence with correct data when valid form is submitted', async () => {
+  it('emits add-expense with correct data when valid form is submitted', async () => {
     const wrapper = mount(AddExpense)
 
     await fillForm(wrapper, {
@@ -155,21 +155,21 @@ describe('AddExpense', () => {
 
     await submitForm(wrapper)
 
-    expect(wrapper.emitted('add-expence')).toBeTruthy()
+    expect(wrapper.emitted('add-expense')).toBeTruthy()
 
-    const emittedData = wrapper.emitted('add-expence')[0][0]
+    const emittedData = wrapper.emitted('add-expense')[0][0]
     expect(emittedData.description).toBe('Тестова витрата')
     expect(emittedData.amount).toBe(100.0)
     expect(emittedData.category).toBe('food (їжа)')
     expect(emittedData.date).toBeInstanceOf(Date)
   })
 
-  it('does not emit add-expence when invalid form is submitted', async () => {
+  it('does not emit add-expense when invalid form is submitted', async () => {
     const wrapper = mount(AddExpense)
 
     await submitForm(wrapper)
 
-    expect(wrapper.emitted('add-expence')).toBeFalsy()
+    expect(wrapper.emitted('add-expense')).toBeFalsy()
 
     const errors = wrapper.findAll('.add-expense__field-error')
     expect(errors.length).toBeGreaterThan(0)
@@ -186,11 +186,11 @@ describe('AddExpense', () => {
 
     await submitForm(wrapper)
 
-    expect(wrapper.emitted('add-expence')).toBeTruthy()
+    expect(wrapper.emitted('add-expense')).toBeTruthy()
 
     await submitForm(wrapper)
 
-    expect(wrapper.emitted('add-expence')).toHaveLength(1)
+    expect(wrapper.emitted('add-expense')).toHaveLength(1)
   })
 
   it('converts amount to number (float) on submission', async () => {
@@ -204,7 +204,7 @@ describe('AddExpense', () => {
 
     await submitForm(wrapper)
 
-    const emittedData = wrapper.emitted('add-expence')[0][0]
+    const emittedData = wrapper.emitted('add-expense')[0][0]
     expect(typeof emittedData.amount).toBe('number')
     expect(emittedData.amount).toBe(100.0)
   })

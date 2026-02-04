@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import BaseButton from './BaseButton.vue'
 
 const props = defineProps({
-  expence: {
+  expense: {
     type: Object,
     required: true,
     validator: (value) => {
@@ -22,17 +22,17 @@ const props = defineProps({
 const emit = defineEmits(['delete-expense'])
 
 const handleDelete = () => {
-  emit('delete-expense', props.expence.id)
+  emit('delete-expense', props.expense.id)
 }
 
 const formattedDate = computed(() => {
   const date =
-    props.expence.date instanceof Date ? props.expence.date : new Date(props.expence.date)
+    props.expense.date instanceof Date ? props.expense.date : new Date(props.expense.date)
   return date.toLocaleDateString('uk-UA')
 })
 
 const formattedAmount = computed(() => {
-  return props.expence.amount.toFixed(2)
+  return props.expense.amount.toFixed(2)
 })
 </script>
 
@@ -40,12 +40,12 @@ const formattedAmount = computed(() => {
   <div class="expense-item card shadow-sm">
     <div class="card-body expense-item__body">
       <div class="expense-item__header">
-        <h4 class="expense-item__title">{{ expence.description }}</h4>
+        <h4 class="expense-item__title">{{ expense.description }}</h4>
         <span class="expense-item__amount">{{ formattedAmount }} грн</span>
       </div>
       <div class="expense-item__details">
         <span class="expense-item__category">
-          <strong>Категорія:</strong> {{ expence.category }}
+          <strong>Категорія:</strong> {{ expense.category }}
         </span>
         <span class="expense-item__date"> <strong>Дата:</strong> {{ formattedDate }} </span>
       </div>
