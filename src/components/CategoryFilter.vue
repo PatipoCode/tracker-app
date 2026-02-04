@@ -1,7 +1,7 @@
 <script setup>
-import { computed, ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import { computed } from 'vue'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
+import { useDropdown } from '@/composables/useDropdown'
 
 const props = defineProps({
   categories: {
@@ -23,33 +23,17 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
+const { isOpen, dropdownRef, toggleDropdown, closeDropdown, handleKeydown } = useDropdown()
+
 const inputValue = computed({
   get: () => props.modelValue,
   set: (value) => emit('update:modelValue', value),
 })
 
-const isOpen = ref(false)
-const dropdownRef = ref(null)
-
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
-
 const selectOption = (value) => {
   inputValue.value = value
-  isOpen.value = false
+  closeDropdown()
 }
-
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    toggleDropdown()
-  }
-}
-
-onClickOutside(dropdownRef, () => {
-  isOpen.value = false
-})
 
 const displayValue = computed(() => {
   return inputValue.value === 'all' ? 'Всі категорії' : inputValue.value

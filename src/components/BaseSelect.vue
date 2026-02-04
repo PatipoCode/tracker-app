@@ -1,8 +1,8 @@
 <script lang="js" setup>
-import { computed, ref, useAttrs } from 'vue'
-import { onClickOutside } from '@vueuse/core'
+import { computed, useAttrs } from 'vue'
 import { EXPENSE_CATEGORIES } from '@/constants'
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
+import { useDropdown } from '@/composables/useDropdown'
 
 defineOptions({
   inheritAttrs: false,
@@ -27,6 +27,8 @@ const props = defineProps({
 const attrs = useAttrs()
 const emit = defineEmits(['update:modelValue', 'change'])
 
+const { isOpen, dropdownRef, toggleDropdown, closeDropdown, handleKeydown } = useDropdown()
+
 const inputValue = computed({
   get: () => props.modelValue,
   set: (value) => {
@@ -36,28 +38,11 @@ const inputValue = computed({
 })
 
 const options = EXPENSE_CATEGORIES
-const isOpen = ref(false)
-const dropdownRef = ref(null)
-
-const toggleDropdown = () => {
-  isOpen.value = !isOpen.value
-}
 
 const selectOption = (option) => {
   inputValue.value = option
-  isOpen.value = false
+  closeDropdown()
 }
-
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    toggleDropdown()
-  }
-}
-
-onClickOutside(dropdownRef, () => {
-  isOpen.value = false
-})
 
 const displayValue = computed(() => {
   return inputValue.value || 'Оберіть категорію'
