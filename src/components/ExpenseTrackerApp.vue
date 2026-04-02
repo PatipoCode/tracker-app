@@ -55,7 +55,7 @@ onMounted(() => {
           <ThemeToggle />
         </div>
         <img src="/images/logo.png" alt="Logo" class="expense-tracker__logo" />
-        <h1 class="expense-tracker__title">Візьми фінанси під контроль!</h1>
+        <h1 class="expense-tracker__title">Take control of your finances!</h1>
       </div>
 
       <div class="expense-tracker__form">

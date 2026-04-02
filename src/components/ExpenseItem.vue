@@ -28,7 +28,7 @@ const handleDelete = () => {
 const formattedDate = computed(() => {
   const date =
     props.expense.date instanceof Date ? props.expense.date : new Date(props.expense.date)
-  return date.toLocaleDateString('uk-UA')
+  return date.toLocaleDateString('en-US')
 })
 
 const formattedAmount = computed(() => {
@@ -41,16 +41,16 @@ const formattedAmount = computed(() => {
     <div class="card-body expense-item__body">
       <div class="expense-item__header">
         <h4 class="expense-item__title">{{ expense.description }}</h4>
-        <span class="expense-item__amount">{{ formattedAmount }} грн</span>
+        <span class="expense-item__amount">{{ formattedAmount }} UAH</span>
       </div>
       <div class="expense-item__details">
         <span class="expense-item__category">
-          <strong>Категорія:</strong> {{ expense.category }}
+          <strong>Category:</strong> {{ expense.category }}
         </span>
-        <span class="expense-item__date"> <strong>Дата:</strong> {{ formattedDate }} </span>
+        <span class="expense-item__date"> <strong>Date:</strong> {{ formattedDate }} </span>
       </div>
       <div class="expense-item__actions">
-        <BaseButton title="Видалити" variant="danger" @on-btn-click="handleDelete" />
+        <BaseButton title="Delete" variant="danger" @on-btn-click="handleDelete" />
       </div>
     </div>
   </div>

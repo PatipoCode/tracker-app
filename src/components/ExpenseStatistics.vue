@@ -36,14 +36,14 @@ const hasCategories = computed(() => {
 <template>
   <div class="statistics card shadow-sm">
     <div class="card-body">
-      <h3 class="statistics__title card-title">Статистика витрат</h3>
+      <h3 class="statistics__title card-title">Expense Statistics</h3>
 
       <div class="statistics__total alert alert-info">
-        <strong>Загальні витрати:</strong> {{ formatAmount(total) }} грн
+        <strong>Total expenses:</strong> {{ formatAmount(total) }} UAH
       </div>
 
       <div v-if="hasCategories" class="statistics__categories">
-        <h5 class="statistics__subtitle">За категоріями:</h5>
+        <h5 class="statistics__subtitle">By category:</h5>
         <div class="statistics__list">
           <div
             v-for="[category, amount] in sortedCategoryStats"
@@ -52,7 +52,7 @@ const hasCategories = computed(() => {
           >
             <div class="statistics__category-info">
               <span class="statistics__category-name">{{ category }}</span>
-              <span class="statistics__category-amount">{{ formatAmount(amount) }} грн</span>
+              <span class="statistics__category-amount">{{ formatAmount(amount) }} UAH</span>
             </div>
             <div class="progress statistics__progress">
               <div
@@ -158,7 +158,7 @@ const hasCategories = computed(() => {
   }
 
   &__category-amount {
-    color: darken($color-accent, 15%);
+    color: $color-accent-dark;
     font-weight: 700;
   }
 

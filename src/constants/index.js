@@ -7,9 +7,9 @@ export const STORAGE_KEY = 'expense-tracker-data'
 export const THEME_KEY = 'expense-tracker-theme'
 
 export const EXPENSE_CATEGORIES = [
-  'food (їжа)',
-  'transport (транспорт)',
-  'entertainment (розваги)',
-  'utilities (комунальні послуги)',
-  'other (інше)',
+  'Food',
+  'Transport',
+  'Entertainment',
+  'Utilities',
+  'Other',
 ]

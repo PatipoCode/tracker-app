@@ -25,8 +25,8 @@ const handleDelete = (id) => {
       v-if="items.length === 0"
       class="expense-list__empty"
       :image-src="emptyStateImage"
-      title="Витрат не знайдено"
-      description="Додайте свою першу витрату, щоб почати відстежувати фінанси"
+      title="No expenses found"
+      description="Add your first expense to start tracking your finances"
     />
     <ExpenseItem
       v-else

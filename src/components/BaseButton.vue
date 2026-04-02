@@ -77,11 +77,11 @@ const handleClick = () => {
   }
 
   &-danger {
-    background: linear-gradient(135deg, $color-danger 0%, darken($color-danger, 10%) 100%);
+    background: linear-gradient(135deg, $color-danger 0%, $color-danger-dark 100%);
     color: #ffffff;
 
     &:hover:not(:disabled) {
-      background: linear-gradient(135deg, lighten($color-danger, 5%) 0%, $color-danger 100%);
+      background: linear-gradient(135deg, $color-danger-light 0%, $color-danger 100%);
     }
 
     &:focus {
