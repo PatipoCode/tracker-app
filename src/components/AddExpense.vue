@@ -29,12 +29,12 @@ const validateDescription = () => {
   const trimmed = expense.description.trim()
 
   if (!trimmed) {
-    errors.description = "Опис обов'язковий"
+    errors.description = 'Description is required'
     return false
   }
 
   if (trimmed.length < MIN_DESCRIPTION_LENGTH) {
-    errors.description = `Опис повинен містити мінімум ${MIN_DESCRIPTION_LENGTH} символи`
+    errors.description = `Description must be at least ${MIN_DESCRIPTION_LENGTH} characters`
     return false
   }
 
@@ -44,24 +44,24 @@ const validateDescription = () => {
 
 const validateAmount = () => {
   if (!expense.amount) {
-    errors.amount = "Сума обов'язкова"
+    errors.amount = 'Amount is required'
     return false
   }
 
   const amount = parseFloat(expense.amount)
 
   if (isNaN(amount)) {
-    errors.amount = 'Введіть коректне число'
+    errors.amount = 'Enter a valid number'
     return false
   }
 
   if (amount <= 0) {
-    errors.amount = 'Сума повинна бути більше 0'
+    errors.amount = 'Amount must be greater than 0'
     return false
   }
 
   if (amount > MAX_AMOUNT) {
-    errors.amount = `Максимальна сума: ${MAX_AMOUNT.toLocaleString('uk-UA')}`
+    errors.amount = `Maximum amount: ${MAX_AMOUNT.toLocaleString('en-US')}`
     return false
   }
 
@@ -70,7 +70,7 @@ const validateAmount = () => {
   const decimalTooLong = hasDecimal && parts[1].length > MAX_DECIMAL_PLACES
 
   if (decimalTooLong) {
-    errors.amount = `Максимум ${MAX_DECIMAL_PLACES} знаки після коми`
+    errors.amount = `Maximum ${MAX_DECIMAL_PLACES} decimal places`
     return false
   }
 
@@ -80,7 +80,7 @@ const validateAmount = () => {
 
 const validateCategory = () => {
   if (!expense.category) {
-    errors.category = "Оберіть категорію"
+    errors.category = 'Please select a category'
     return false
   }
   errors.category = ''
@@ -144,15 +144,15 @@ const handleSubmit = () => {
 <template>
   <div class="add-expense card shadow-sm">
     <div class="card-body">
-      <h3 class="add-expense__title card-title">Додати нову витрату</h3>
+      <h3 class="add-expense__title card-title">Add New Expense</h3>
       <form @submit.prevent="handleSubmit" class="add-expense__form">
         <div class="add-expense__field mb-3">
-          <label for="expense-description" class="add-expense__label form-label">Опис витрати</label>
+          <label for="expense-description" class="add-expense__label form-label">Description</label>
           <BaseInput
             id="expense-description"
             v-model="expense.description"
             :type="'text'"
-            :placeholder="'Наприклад: Продукти в супермаркеті'"
+            :placeholder="'e.g. Groceries at the supermarket'"
             :class="{ 'is-invalid': touched.description && errors.description }"
             @blur="onDescriptionBlur"
           />
@@ -162,7 +162,7 @@ const handleSubmit = () => {
         </div>
 
         <div class="add-expense__field mb-3">
-          <label for="expense-amount" class="add-expense__label form-label">Сума</label>
+          <label for="expense-amount" class="add-expense__label form-label">Amount</label>
           <BaseInput
             id="expense-amount"
             v-model="expense.amount"
@@ -178,7 +178,7 @@ const handleSubmit = () => {
         </div>
 
         <div class="add-expense__field mb-3">
-          <label for="expense-category" class="add-expense__label form-label">Категорія</label>
+          <label for="expense-category" class="add-expense__label form-label">Category</label>
           <BaseSelect
             id="expense-category"
             v-model="expense.category"
@@ -190,7 +190,7 @@ const handleSubmit = () => {
           </div>
         </div>
 
-        <BaseButton :title="'Додати витрату'" :type="'submit'" class="mt-3"/>
+        <BaseButton :title="'Add Expense'" :type="'submit'" class="mt-3"/>
       </form>
     </div>
   </div>

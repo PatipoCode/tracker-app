@@ -45,7 +45,7 @@ const selectOption = (option) => {
 }
 
 const displayValue = computed(() => {
-  return inputValue.value || 'Оберіть категорію'
+  return inputValue.value || 'Select a category'
 })
 </script>
 
@@ -55,18 +55,17 @@ const displayValue = computed(() => {
     class="custom-select"
     :class="[{ 'custom-select--open': isOpen }, attrs.class]"
   >
-    <div
+    <button
+      type="button"
       :id="id"
       class="custom-select__trigger"
       @click="toggleDropdown"
       @keydown="handleKeydown"
-      role="button"
-      tabindex="0"
       :aria-expanded="isOpen"
     >
       <span :class="{ 'custom-select__placeholder': !inputValue }">{{ displayValue }}</span>
       <IconArrowDown class="custom-select__arrow" />
-    </div>
+    </button>
     <div v-if="isOpen" class="custom-select__dropdown">
       <div
         v-if="!required"
@@ -74,7 +73,7 @@ const displayValue = computed(() => {
         :class="{ 'custom-select__option--selected': !inputValue }"
         @click="selectOption('')"
       >
-        Оберіть категорію
+        Select a category
       </div>
       <div
         v-for="(option, index) in options"

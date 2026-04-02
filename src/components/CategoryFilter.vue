@@ -36,7 +36,7 @@ const selectOption = (value) => {
 }
 
 const displayValue = computed(() => {
-  return inputValue.value === 'all' ? 'Всі категорії' : inputValue.value
+  return inputValue.value === 'all' ? 'All categories' : inputValue.value
 })
 </script>
 
@@ -44,28 +44,27 @@ const displayValue = computed(() => {
   <div class="category-filter card shadow-sm">
     <div class="card-body">
       <label for="category-filter" class="category-filter__label form-label"
-        >Фільтр за категорією:</label
+        >Filter by category:</label
       >
       <div ref="dropdownRef" class="custom-select" :class="{ 'custom-select--open': isOpen }">
-        <div
+        <button
+          type="button"
           id="category-filter"
           class="custom-select__trigger"
           @click="toggleDropdown"
           @keydown="handleKeydown"
-          role="button"
-          tabindex="0"
           :aria-expanded="isOpen"
         >
           <span>{{ displayValue }}</span>
           <IconArrowDown class="custom-select__arrow" />
-        </div>
+        </button>
         <div v-if="isOpen" class="custom-select__dropdown">
           <div
             class="custom-select__option"
             :class="{ 'custom-select__option--selected': inputValue === 'all' }"
             @click="selectOption('all')"
           >
-            Всі категорії
+            All categories
           </div>
           <div
             v-for="category in categories"
