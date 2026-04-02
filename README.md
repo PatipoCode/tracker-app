@@ -55,6 +55,21 @@ npm install
 npm run dev
 ```
 
+## Testing
+
+Unit tests are written with [Vitest](https://vitest.dev/) and [@vue/test-utils](https://test-utils.vuejs.org/).
+
+```
+tests/
+├── components/   # 12 component tests
+└── stores/       # 2 store tests (expenses, theme)
+```
+
+```bash
+npm test           # run all tests
+npm run test:ui    # run with Vitest UI
+```
+
 ## Available Scripts
 
 | Script | Description |
